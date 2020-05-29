@@ -179,25 +179,21 @@
     </div>
   </template>
   <script>
+    "use strict";
     var fireballSize = 22;
+    var wizardSpeed = 3;
+    var wizardWidth = 70;
+    var wizardFactor = 1.337;
+    var strongWind = 5;
+    var lightWind = 2;
 
     function getFireballSpeed(isWindFromLeft) {
-      if (isWindFromLeft) {
-        return 5;
-      }
-
-      return 2;
+      return isWindFromLeft ? strongWind : lightWind;
     }
-
-    var wizardWidth = 70;
 
     function getWizardHeight() {
-      return 1.337 * wizardWidth;
+      return wizardFactor * wizardWidth;
     }
-
-    // var getWizardHeight = 1.337 * wizardWidth;
-
-    var wizardSpeed = 3;
 
     function getWizardX(gameFieldWidth) {
       return (gameFieldWidth - wizardWidth) / 2;
