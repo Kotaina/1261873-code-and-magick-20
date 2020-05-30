@@ -183,7 +183,7 @@
     var fireballSize = 22;
     var wizardSpeed = 3;
     var wizardWidth = 70;
-    var wizardFactor = 1.337;
+    var WIZARD_FACTOR = 1.337;
     var strongWind = 5;
     var lightWind = 2;
 
@@ -192,7 +192,7 @@
     }
 
     function getWizardHeight() {
-      return wizardFactor * wizardWidth;
+      return WIZARD_FACTOR * wizardWidth;
     }
 
     function getWizardX(gameFieldWidth) {
