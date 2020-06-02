@@ -10,10 +10,10 @@ var TEXT_HEIGHT = 30;
 var BAR_WIDTH = 40;
 var BAR_HEIGHT = CLOUD_HEIGHT - (CLOUD_HEIGHT + FONT_GAP + TEXT_HEIGHT);
 
-var canvas = document.getElementsById('canvas');
-var txt = canvas.getContext('2d');
-txt.font = '16px PT Mono';
-txt.fillText('Ура вы победили!\nСписок результатов:');
+// var canvas = document.getElementsById('canvas');
+// var txt = canvas.getContext('2d');
+// txt.font = '16px PT Mono';
+// txt.fillText('Ура вы победили!\nСписок результатов:');
 
 var renderCloud = function (ctx, x, y, color) {
   ctx.fillStyle = color;
