@@ -70,8 +70,6 @@ var renderCloudResult = function (ctx, times) {
   ctx.font = '16px PT Mono';
   for (var i = 0; i < times.length; i++) {
     var playerResult = Math.round(times[i]);
-    var maxTime = getMaxElement(times);
-    console.log(times[i]);
     ctx.fillText(playerResult, CLOUD_X + i * BAR_WIDTH + (i + 1) * GAP, CLOUD_HEIGHT - TEXT_HEIGHT - times[i] / 37.8);
   }
 };
