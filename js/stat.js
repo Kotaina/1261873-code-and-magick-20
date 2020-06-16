@@ -47,11 +47,16 @@ var getMaxElement = function (arr) {
   return maxElement;
 };
 
-var renderRectsAndNames = function (ctx, players, times) {
-  var maxTime = getMaxElement(times);
+var renderRects = function (ctx, players) {
   for (var i = 0; i < players.length; i++) {
     ctx.fillStyle = COLOR_BLACK;
     ctx.fillText(players[i], CLOUD_X + i * BAR_WIDTH + (i + 1) * GAP, CLOUD_HEIGHT - FONT_GAP);
+  }
+};
+
+var renderNames = function (ctx, players, times) {
+  var maxTime = getMaxElement(times);
+  for (var i = 0; i < players.length; i++) {
     if (players[i] === 'Вы') {
       ctx.fillStyle = BAR_COLOR;
     } else {
@@ -72,9 +77,11 @@ var renderCloudResult = function (ctx, times) {
     ctx.fillText(playerResult, CLOUD_X + i * BAR_WIDTH + (i + 1) * GAP, ((BAR_HEIGHT * times[i]) / maxTime) + Y_TIME);
   }
 };
+
 window.renderStatistics = function (ctx, players, times) {
   renderCloud(ctx);
   renderCloudTitle(ctx);
   renderCloudResult(ctx, times);
-  renderRectsAndNames(ctx, players, times);
+  renderRects(ctx, players);
+  renderNames(ctx, players, times);
 };
