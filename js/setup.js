@@ -1,4 +1,5 @@
 'use strict';
+var WIZARD_COUNT = 4;
 var setup = document.querySelector('.setup');
 setup.classList.remove('hidden');
 var similarListElement = document.querySelector('.setup-similar-list');
@@ -13,38 +14,22 @@ var randomiser = function (rand) {
   var randomElement = Math.floor(Math.random() * rand) + 1;
   return randomElement;
 };
-var wizardData = [
-  {
-    name: WIZARD_NAMES[randomiser(WIZARD_NAMES.length)],
-    surname: WIZARD_SURNAMES[randomiser(WIZARD_SURNAMES.length)],
-    coatColor: COAT_COLORS[randomiser(COAT_COLORS.length)],
-    eyesColor: EYES_COLOR[randomiser(EYES_COLOR.length)]
-  },
-  {
-    name: WIZARD_NAMES[randomiser(WIZARD_NAMES.length)],
-    surname: WIZARD_SURNAMES[randomiser(WIZARD_SURNAMES.length)],
-    coatColor: COAT_COLORS[randomiser(COAT_COLORS.length)],
-    eyesColor: EYES_COLOR[randomiser(EYES_COLOR.length)]
-  },
-  {
-    name: WIZARD_NAMES[randomiser(WIZARD_NAMES.length)],
-    surname: WIZARD_SURNAMES[randomiser(WIZARD_SURNAMES.length)],
-    coatColor: COAT_COLORS[randomiser(COAT_COLORS.length)],
-    eyesColor: EYES_COLOR[randomiser(EYES_COLOR.length)]
-  },
-  {
-    name: WIZARD_NAMES[randomiser(WIZARD_NAMES.length)],
-    surname: WIZARD_SURNAMES[randomiser(WIZARD_SURNAMES.length)],
-    coatColor: COAT_COLORS[randomiser(COAT_COLORS.length)],
-    eyesColor: EYES_COLOR[randomiser(EYES_COLOR.length)]
-  }
-];
 
-for (var i = 0; i < wizardData.length; i++) {
+var getWizardData = [];
+
+for (var i = 0; i < WIZARD_COUNT; i++) {
+  var getUserObject = {
+    name: WIZARD_NAMES[randomiser(WIZARD_NAMES.length)],
+    surname: WIZARD_SURNAMES[randomiser(WIZARD_SURNAMES.length)],
+    coatColor: COAT_COLORS[randomiser(COAT_COLORS.length)],
+    eyesColor: EYES_COLOR[randomiser(EYES_COLOR.length)]
+  };
+
+  getWizardData.push(getUserObject);
   var wizardElement = similarWizardTemplate.cloneNode(true);
-  wizardElement.querySelector('.setup-similar-label').textContent = wizardData[i].name + wizardData[i].surname;
-  wizardElement.querySelector('.wizard-coat').style.fill = wizardData[i].coatColor;
-  wizardElement.querySelector('.wizard-eyes').style.fill = wizardData[i].eyesColor;
+  wizardElement.querySelector('.setup-similar-label').textContent = getWizardData[i].name + getWizardData[i].surname;
+  wizardElement.querySelector('.wizard-coat').style.fill = getWizardData[i].coatColor;
+  wizardElement.querySelector('.wizard-eyes').style.fill = getWizardData[i].eyesColor;
 
   similarListElement.appendChild(wizardElement);
 }
