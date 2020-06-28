@@ -22,7 +22,7 @@ var getWizardObject = function () {
 
 var generateWizardsData = function () {
   for (var i = 0; i < WIZARD_COUNT; i++) {
-    wizardsData.push(getWizardObject);
+    wizardsData.push(getWizardObject());
   }
 };
 
@@ -40,7 +40,7 @@ var fillWizardTemplate = function (wizardObject) {
 
 var renderWizards = function (wizards) {
   var similarListElement = document.querySelector('.setup-similar-list');
-  var fragment = document.createDocumentFragment;
+  var fragment = document.createDocumentFragment();
   for (var i = 0; i < wizards.length; i++) {
     fragment.appendChild(fillWizardTemplate(wizards[i]));
   }
