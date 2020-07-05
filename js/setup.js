@@ -57,39 +57,44 @@ var openSetup = document.querySelector('.setup-open');
 var setupPopup = document.querySelector('.setup');
 var closeSetup = setupPopup.querySelector('.setup-close');
 var wizardNameInput = document.querySelector('.setup-user-name');
-var saveWizardSettings = setupPopup.querySelector('.setup-submit');
-var setupWizardForm = document.querySelector('.setup-wizard-form');
-
-var popupCloseEscape = function (evt) {
-  if (evt.key === 'Escape') {
-    evt.preventDefault();
-    setupPopup.classList.add('hidden');
-  }
+var KEYCODE = {
+  ESC: 'Escape',
+  ENTER: 'Enter'
 };
 
-var openPopup = function () {
-  setupPopup.classList.remove('hidden');
+wizardNameInput.addEventListener('focus', function () {
+  document.removeEventListener('keydown', onPopupEscKeydown);
+});
 
-  document.addEventListener('keydown', function (evt) {
-    if (evt.key === 'Escape' && wizardNameInput.focus !== true) { // Судя по всему, не работает
-      evt.preventDefault();
-      setupPopup.classList.add('hidden');
-    }
-  });
-};
+wizardNameInput.addEventListener('blur', function () {
+  document.addEventListener('keydown', onPopupEscKeydown);
+});
 
 var closePopup = function () {
   setupPopup.classList.add('hidden');
-
-  document.removeEventListener('keydown', popupCloseEscape);
+  document.removeEventListener('keydown', onPopupEscKeydown);
 };
+
+var onPopupEscKeydown = function (evt) {
+  if (evt.key === KEYCODE.ESC) {
+    evt.preventDefault();
+    closePopup();
+  }
+};
+
+
+var openPopup = function () {
+  setupPopup.classList.remove('hidden');
+  document.addEventListener('keydown', onPopupEscKeydown);
+};
+
 
 openSetup.addEventListener('click', function () {
   openPopup();
 });
 
 openSetup.addEventListener('keydown', function (evt) {
-  if (evt.key === 'Enter') {
+  if (evt.key === KEYCODE.ENTER) {
     evt.preventDefault();
     openPopup();
   }
@@ -100,7 +105,7 @@ closeSetup.addEventListener('click', function () {
 });
 
 closeSetup.addEventListener('keydown', function (evt) {
-  if (evt.key === 'Enter') {
+  if (evt.key === KEYCODE.ENTER) {
     closePopup();
   }
 });
@@ -109,14 +114,6 @@ closeSetup.addEventListener('keydown', function (evt) {
 
 var MIN_NAME_LENGTH = 2;
 var MAX_NAME_LENGTH = 25;
-
-// function wizardFormSubmit() {
-//   setupWizardForm.action = 'https://javascript.pages.academy/code-and-magick';
-//   setupWizardForm.method = 'post';
-//   document.body.append(setupWizardForm);
-//   setupWizardForm.submit();
-//   console.log('done');
-// }
 
 wizardNameInput.addEventListener('input', function () {
   var wizardNameLength = wizardNameInput.value.length;
@@ -129,13 +126,6 @@ wizardNameInput.addEventListener('input', function () {
     wizardNameInput.setCustomValidity(' ');
   }
 });
-
-// saveWizardSettings.addEventListener('click', wizardFormSubmit());
-// saveWizardSettings.addEventListener('keydown', function () {
-//   if (evt.key === 'Enter') {
-//     wizardFormSubmit();
-//   };
-// });
 
 // Изменение цвета
 
